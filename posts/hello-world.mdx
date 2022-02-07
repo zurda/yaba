@@ -1,0 +1,22 @@
+---
+title: Hello World
+publishedOn: '2022-01-06'
+author: Michal Weisman
+summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+slug: hello-world
+mainImageUrl: '/images/posts/example.png'
+---
+
+This is a `.mdx` file.
+
+In order to display it, we added 3 packages:
+
+- `marked`: pass our `.mdx` file and render as HTML
+- `next-mdx-remote`: make our `.mdx` files and use them as our posts
+- `gray-matter`: use the metadata on the top of the `.mdx` file
+
+## How it's done:
+
+1. Put the posts in a `posts` folder in the root directory as `.mdx` file
+2. Save the images in `public/posts/<file-name>`
+3. Set up the `blog/[slug].tsx` file
