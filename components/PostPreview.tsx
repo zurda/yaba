@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Pane, Heading, Paragraph, Button, majorScale } from 'evergreen-ui'
 import Link from 'next/link'
+import { format, parseISO } from 'date-fns'
 
 const PostPreview: FC<{ post: { title: string; summary: string; slug: string, publishedOn: string } }> = ({ post }) => {
   return (
@@ -9,7 +10,7 @@ const PostPreview: FC<{ post: { title: string; summary: string; slug: string, pu
         {post.title}
       </Heading>
       <Paragraph marginBottom={majorScale(2)}>{post.summary}</Paragraph>
-      <Paragraph marginBottom={majorScale(2)}>{post.publishedOn}</Paragraph>
+      <Paragraph marginBottom={majorScale(2)}>{format(parseISO(post.publishedOn), 'LLL do, yyyy')}</Paragraph>
       <Pane textAlign="right">
         <Link href={`/blog/${post.slug}`}>
           <a>
