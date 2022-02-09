@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { Pane, majorScale } from 'evergreen-ui'
+import { home } from '../content'
 import Container from '../components/Container'
 import Hero from '../components/Hero'
 import HomeNav from '../components/HomeNav'
@@ -39,6 +40,14 @@ Home.defaultProps = {
     features: [{ title: 'default feature', body: 'default body' }],
     hero: { title: 'default title', body: 'default body' },
   },
+}
+
+export function getStaticProps() {
+  return {
+    props: {
+      content: home.published,
+    },
+  }
 }
 
 export default Home
