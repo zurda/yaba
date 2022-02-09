@@ -38,8 +38,8 @@ export async function getStaticProps() {
       return { ...data, slug: filename.replace('.mdx', '') }
     }),
     ['publishedOn'],
-    ['desc']
-    )
+    ['desc'],
+  )
 
   return { props: { posts } }
 }

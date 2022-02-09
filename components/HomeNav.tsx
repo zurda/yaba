@@ -13,7 +13,7 @@ const HomeNav: FC<{ links?: { name: string; link: string }[]; authButton?: boole
             <Logo />
 
             <Pane display="flex" justifyContent="space-around" alignItems="center">
-                {links && links.length > 0
+              {links && links.length > 0
                 ? links.map((link) => (
                     <Pane paddingX={majorScale(3)} key={link.name}>
                       <NextLink href="/blog">
