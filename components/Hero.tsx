@@ -1,6 +1,7 @@
+import { FC } from 'react'
 import { Pane, Heading, Paragraph, majorScale } from 'evergreen-ui'
 
-const Hero = () => {
+const Hero: FC<{ content: { title: string; body: string } }> = ({ content }) => {
   return (
     <Pane
       width="100%"
@@ -11,10 +12,10 @@ const Hero = () => {
     >
       <Pane>
         <Heading fontSize="clamp(2rem, 8vw, 6rem)" lineHeight="clamp(2rem, 8vw, 6rem)" marginBottom={majorScale(8)}>
-          A beautiful knowledge base for your whole team.
+          {content.title}
         </Heading>
         <Paragraph fontSize="clamp(1.2rem, 4vw, 1.5rem)" lineHeight="clamp(1.2rem, 4vw, 2rem)">
-          High performing teams use Yaba to document and record everything.
+          {content.body}
         </Paragraph>
       </Pane>
     </Pane>
