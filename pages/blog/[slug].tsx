@@ -5,7 +5,7 @@ import matter from 'gray-matter'
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 import Head from 'next/head'
-import { Pane, Heading, majorScale, Spinner } from 'evergreen-ui'
+import { Pane, Heading, majorScale, Spinner, Image } from 'evergreen-ui'
 import { useRouter } from 'next/router'
 
 import Container from '../../components/Container'
@@ -38,7 +38,7 @@ export default function BlogPost({ source, frontMatter }): InferGetStaticPropsTy
           <Heading fontSize="clamp(2rem, 8vw, 6rem)" lineHeight="clamp(2rem, 8vw, 6rem)" marginY={majorScale(3)}>
             {frontMatter.title}
           </Heading>
-          <img src={frontMatter.mainImageUrl} width="500" />
+          <Image src={frontMatter.mainImageUrl} width="500" alt="Post header visuals" />
           <Pane>
             <MDXRemote {...source} />
           </Pane>

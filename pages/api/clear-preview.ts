@@ -1,6 +1,8 @@
 import { NextApiResponse } from 'next'
 
-export default (req, res: NextApiResponse) => {
+const codePreview = (req, res: NextApiResponse) => {
   res.clearPreviewData()
   res.end('Preview mode disabled')
 }
+
+export default codePreview

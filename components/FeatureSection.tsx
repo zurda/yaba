@@ -16,7 +16,7 @@ const FeatureSection: FC<{ invert?: boolean; title: string; body: string; image:
   )
   const Right = () => (
     <Pane textAlign={invert ? 'left' : 'right'}>
-      <Image src={image} />
+      <Image src={image} alt={title} />
     </Pane>
   )
 
