@@ -5,35 +5,48 @@ import matter from 'gray-matter'
 import {serialize} from 'next-mdx-remote/serialize'
 import {MDXRemote} from 'next-mdx-remote'
 import Head from 'next/head'
-import { Pane, Heading, majorScale } from 'evergreen-ui'
+import { Pane, Heading, majorScale, Spinner } from 'evergreen-ui'
+import { useRouter } from 'next/router'
 
 import Container from '../../components/Container'
 import HomeNav from '../../components/HomeNav'
 
 
 export default function BlogPost( {source, frontMatter} ): InferGetStaticPropsType<typeof getStaticProps> {
+  const router = useRouter()
+
+  // in case of fallback state: true
+  // if someone requests a page that wasn't statically rendered
+  // show spinner
+  if (router.isFallback) {
     return (
-    <Pane>
-      <Head>
-        <title>{`Yaba Blog | ${frontMatter.title}`}</title>
-        <meta name="description" content={frontMatter.summary} />
-      </Head>
-      <header>
-        <HomeNav />
-      </header>
-      <main>
-        <Container>
-          <Heading fontSize="clamp(2rem, 8vw, 6rem)" lineHeight="clamp(2rem, 8vw, 6rem)" marginY={majorScale(3)}>
-            {frontMatter.title}
-          </Heading>
-          <img src={frontMatter.mainImageUrl} width='500' />
-          <Pane>
-            <MDXRemote {...source} />
-          </Pane>
-        </Container>
-      </main>
-    </Pane>
+      <Pane width="100%" height="100%">
+        <Spinner size={48} />
+      </Pane>
     )
+  }
+  return (
+  <Pane>
+    <Head>
+      <title>{`Yaba Blog | ${frontMatter.title}`}</title>
+      <meta name="description" content={frontMatter.summary} />
+    </Head>
+    <header>
+      <HomeNav />
+    </header>
+    <main>
+      <Container>
+        <Heading fontSize="clamp(2rem, 8vw, 6rem)" lineHeight="clamp(2rem, 8vw, 6rem)" marginY={majorScale(3)}>
+          {frontMatter.title}
+        </Heading>
+        <img src={frontMatter.mainImageUrl} width='500' />
+        <Pane>
+          <MDXRemote {...source} />
+        </Pane>
+      </Container>
+    </main>
+  </Pane>
+  )
 }
 
 // The returned value from `getStaticPaths` gets passed into `getStaticProps`
@@ -49,6 +62,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     const paths = filenames.map((name) => ({ params: { slug: name.replace('.mdx', '') } }))
 
     // Fallback purpose: if the `slug` doesn't exist -> 404 page
+    // if fallback is true, the slug will be passed to getStaticProps
+    // and attempt to find this blogpost
     return { paths, fallback: false }
 }
 
